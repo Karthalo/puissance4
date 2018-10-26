@@ -10,8 +10,8 @@ import com.orsy.tdd.puissance4.client.ClientPuissance4;
 public class EtatPartie {
 	
 	private int etat = ClientPuissance4.DECONNECTE;
-	private final int NB_LIG = 6;
-	private final int NB_COL = 7;
+	private static final int NB_LIG = 6;
+	private static final int NB_COL = 7;
 	private String[][] grille = new String[NB_LIG][NB_COL];
 	private String couleur;
     private boolean[] etatBoutonsCol = new boolean[7];
@@ -61,7 +61,9 @@ public class EtatPartie {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			s = mapper.writeValueAsString(this);
-		} catch (JsonProcessingException e) {} 
+		} catch (JsonProcessingException e) {
+			System.out.println("Catch");
+		} 
 		return s;
 	}
 

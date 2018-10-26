@@ -1,9 +1,9 @@
 package com.orsys.tdd.puissance4.serveur.modele;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
-import java.lang.reflect.*;
 
 public class ConstructeurModelePuissance4 {
 	
@@ -113,7 +113,8 @@ public class ConstructeurModelePuissance4 {
 		}
 	}
 	
-    public ModelePuissance4 construire() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    public ModelePuissance4 construire() 
+    		throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     	if ( pourToutesLesColonnes ) {
     		pourToutesLesColonnes = false;
     		for( int col=1; col<=ModelePuissance4.NB_COL; col++) {

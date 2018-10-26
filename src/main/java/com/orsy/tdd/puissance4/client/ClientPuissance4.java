@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -12,9 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
-import java.net.URI;
-import javax.websocket.*;
-import org.springframework.web.client.RestTemplate;
+import javax.websocket.ClientEndpoint;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -27,10 +24,10 @@ public class ClientPuissance4 extends JFrame implements IActionsPuissance4 {
 	
 	private static final int NB_LIGS = 6;
 	private static final int NB_COLS = 7;
-	private final int X_COIN_SG = 10;
-	private final int Y_COIN_SG = 60;
-	private final int DIAMETRE_JETON = 50;
-	private final int ECART_ENTRE_JETON = 3;
+	private static final int X_COIN_SG = 10;
+	private static final int Y_COIN_SG = 60;
+	private static final int DIAMETRE_JETON = 50;
+	private static final int ECART_ENTRE_JETON = 3;
 
 		
 	static final public int DECONNECTE = 0;

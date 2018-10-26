@@ -1,6 +1,5 @@
 package com.orsys.tdd.puissance4.acceptation;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
@@ -72,7 +71,8 @@ public class TestsAcceptation {
 	}
 	
 	@Test
-	public void testPartieNulle() throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void testPartieNulle() throws 
+	ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         modele = fabrique.dansUnModeleVide().pourToutesLesColonnesFaire()
         			.lacher(3).jetons().changerLaCouleur().lacher(3).jetons()
         			.construire();

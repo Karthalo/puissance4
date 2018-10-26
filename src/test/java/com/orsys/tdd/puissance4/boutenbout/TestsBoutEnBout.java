@@ -1,7 +1,5 @@
 package com.orsys.tdd.puissance4.boutenbout;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 
@@ -11,18 +9,20 @@ import com.orsy.tdd.puissance4.client.IActionsPuissance4;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.concurrent.TimeUnit;
+
 import org.junit.runners.MethodSorters;
 
-import org.junit.After;
 
-import static org.awaitility.Awaitility.*;
-import static java.util.concurrent.TimeUnit.*;
+import static org.awaitility.Awaitility.await;;
 
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsBoutEnBout {
 	
 	private static final long TIMEOUT = 2;
+	private static final TimeUnit SECONDS = null;
 	static private IActionsPuissance4 ihmJoueur1 = null;
 	static private IActionsPuissance4 ihmJoueur2 = null;
 
@@ -30,16 +30,18 @@ public class TestsBoutEnBout {
 	
 	
 	@Test
-	public void test01_ConnexionDeconnexionPremierJoueur() {
+	public void test01ConnexionDeconnexionPremierJoueur() {
 		
 		ihmJoueur1 = new ClientPuissance4();
 		ihmJoueur1.seConnecter();	
-		await().atMost(TIMEOUT, SECONDS).until( () ->  !ihmJoueur1.lireStatut().equals(ClientPuissance4.STATUT_INITIAL));
+		await().atMost(TIMEOUT, SECONDS).until( () -> 
+		!ihmJoueur1.lireStatut().equals(ClientPuissance4.STATUT_INITIAL));
 		assertEquals( ClientPuissance4.STATUT_CONNECTE_ATTENTE_ADVERSAIRE , ihmJoueur1.lireStatut() );
 	    String texteBouton = ihmJoueur1.lireTexteBoutonAction();
 	    assertEquals( ClientPuissance4.ACTION_DECONNECTER_SERVEUR, texteBouton );
 		ihmJoueur1.seDeconnecter();
-		await().atMost(TIMEOUT, SECONDS).until( () -> !ihmJoueur1.lireStatut().equals(ClientPuissance4.STATUT_CONNECTE_ATTENTE_ADVERSAIRE));
+		await().atMost(TIMEOUT, SECONDS).until( () -> 
+		!ihmJoueur1.lireStatut().equals(ClientPuissance4.STATUT_CONNECTE_ATTENTE_ADVERSAIRE));
 	    assertEquals( ClientPuissance4.STATUT_INITIAL, ihmJoueur1.lireStatut() );
 	    texteBouton = ihmJoueur1.lireTexteBoutonAction();
 	    assertEquals( ClientPuissance4.ACTION_CONNECTER_SERVEUR, texteBouton );
@@ -48,7 +50,7 @@ public class TestsBoutEnBout {
 	}
 	
 	@Test
-	public void test02_AffichagePlateauVidePremierJoueurEtAttenteDeuxiemeJoueur() {
+	public void test02AffichagePlateauVidePremierJoueurEtAttenteDeuxiemeJoueur() {
 		ihmJoueur1 = new ClientPuissance4();
 		ihmJoueur1.positionner(10, 10);
 		ihmJoueur1.seConnecter();	
@@ -56,7 +58,8 @@ public class TestsBoutEnBout {
 	    ihmJoueur2 = new ClientPuissance4();
 	    ihmJoueur2.positionner(400, 10);
 	    ihmJoueur2.seConnecter();
-		await().atMost(TIMEOUT, SECONDS).until( () ->  !ihmJoueur1.lireStatut().equals(ClientPuissance4.STATUT_CONNECTE_ATTENTE_ADVERSAIRE));
+		await().atMost(TIMEOUT, SECONDS).until( () ->  
+		!ihmJoueur1.lireStatut().equals(ClientPuissance4.STATUT_CONNECTE_ATTENTE_ADVERSAIRE));
 	    assertEquals( ClientPuissance4.STATUT_CONNECTE_DOIT_JOUER, ihmJoueur1.lireStatut() );
 		ihmJoueur1.seDeconnecter();
 		ihmJoueur2.seDeconnecter();
@@ -66,7 +69,7 @@ public class TestsBoutEnBout {
 	
 	
 	@Test 
-	public void test03_BoutonAjoutColonneInaccessibleLorsqueColonnePleine() {
+	public void test03BoutonAjoutColonneInaccessibleLorsqueColonnePleine() {
 		ihmJoueur1 = new ClientPuissance4();
 		ihmJoueur1.positionner(10, 10);
 		ihmJoueur1.seConnecter();	

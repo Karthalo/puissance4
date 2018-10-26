@@ -89,7 +89,8 @@ public class ModelePuissance4 {
 		
 		for( Direction dir : Direction.lesDirections ) {
 			int nbPions = compterPionsContigusDepuisPositionDansDirection(couleur, lig, col, dir)
-			+ compterPionsContigusDepuisPositionDansDirection(couleur, lig, col, Direction.directionOpposee(dir));
+			+ compterPionsContigusDepuisPositionDansDirection
+			(couleur, lig, col, Direction.directionOpposee(dir));
 			// Gros piege : on compte 2 fois le premier pion ( lig , col )
 			nbPions--;
 			if ( nbPions >= 4 ) return true;

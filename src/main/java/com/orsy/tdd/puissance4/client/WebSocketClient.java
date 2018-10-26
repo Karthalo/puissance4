@@ -29,7 +29,7 @@ public class WebSocketClient {
          container.connectToServer(this, new URI(uri));
 
       } catch(Exception ex){
-         
+    	  System.out.println("Catch");
       }
    }
 
@@ -57,6 +57,8 @@ public class WebSocketClient {
    public void sendMessage(String message){
       try {
         session.getBasicRemote().sendText(message);
-      } catch (IOException ex) {}
+      } catch (IOException ex) {
+    	  System.out.println("Catch");
+      }
    }
 }
